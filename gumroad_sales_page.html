@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOP Mastery Toolkit — Professional Services Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #09111C;
+  --navy2:   #0D1B2A;
+  --steel:   #1A3350;
+  --teal:    #0B6E6D;
+  --teal2:   #0E8B8A;
+  --gold:    #BF9840;
+  --gold2:   #D4AE5A;
+  --gold-lt: #EDD98A;
+  --cream:   #F6F1E8;
+  --parch:   #EDE5D4;
+  --white:   #FFFFFF;
+  --text:    #C8C0B0;
+  --text2:   #8A8070;
+  --border:  rgba(191,152,64,0.2);
+  --glow:    rgba(191,152,64,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ─────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────── */
+.serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.1; }
+
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.wrap-wide { max-width: 1080px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* ─── GOLD LINE ──────────────────────────────────────────────── */
+.gold-rule { width: 48px; height: 2px; background: var(--gold); margin: 0 auto 24px; }
+.gold-rule.left { margin-left: 0; }
+
+/* ─── KICKER ─────────────────────────────────────────────────── */
+.kicker {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════════════════════════════════════ */
+.announcement {
+  background: var(--gold);
+  color: var(--navy);
+  text-align: center;
+  padding: 10px 24px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 10;
+}
+.announcement strong { font-weight: 700; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  padding: 100px 0 80px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Radial glow behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(ellipse at center, rgba(191,152,64,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Decorative circle outlines */
+.hero-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+.hero-circle:nth-child(1) { width: 480px; height: 480px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.4; }
+.hero-circle:nth-child(2) { width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.2; }
+.hero-circle:nth-child(3) { width: 960px; height: 960px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: 0.1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  background: rgba(191,152,64,0.05);
+  backdrop-filter: blur(4px);
+}
+.hero-badge::before { content: '★'; font-size: 9px; }
+
+.hero h1 {
+  font-size: clamp(44px, 7vw, 80px);
+  color: var(--white);
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold2);
+}
+.hero h1 .line2 {
+  display: block;
+  font-weight: 600;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text);
+  max-width: 560px;
+  margin: 20px auto 0;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* ─── HERO DIVIDER ───────────────────────────────────────────── */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 40px 0;
+  color: var(--text2);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-divider::before, .hero-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── HERO STATS ─────────────────────────────────────────────── */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+  display: block;
+}
+.hero-stat .num em { color: var(--gold2); font-style: normal; }
+.hero-stat .lbl {
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ─── CTA BUTTON ─────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 32px rgba(191,152,64,0.3); }
+.btn-primary .arrow { font-size: 16px; transition: transform 0.2s; }
+.btn-primary:hover .arrow { transform: translateX(3px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: transparent;
+}
+.btn-secondary:hover { background: var(--glow); border-color: var(--gold); }
+
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+}
+.cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+.guarantee-note {
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+}
+.guarantee-note span { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SOCIAL PROOF STRIP
+═══════════════════════════════════════════════════════════════ */
+.proof-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+  background: rgba(191,152,64,0.03);
+}
+.proof-strip-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+}
+.proof-icon { font-size: 18px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PROBLEM SECTION
+═══════════════════════════════════════════════════════════════ */
+.problem-section { padding: 96px 0; }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-header h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.section-header h2 em { color: var(--gold2); }
+.section-header p {
+  font-size: 16px;
+  color: var(--text);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2px;
+  margin-top: 48px;
+}
+.problem-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 32px 28px;
+  transition: background 0.2s;
+}
+.problem-item:hover { background: rgba(191,152,64,0.04); }
+.problem-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.problem-item h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.problem-item p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+.problem-callout {
+  margin-top: 56px;
+  text-align: center;
+  padding: 48px;
+  border: 1px solid var(--border);
+  background: var(--glow);
+  position: relative;
+  overflow: hidden;
+}
+.problem-callout::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 160px;
+  color: var(--gold);
+  opacity: 0.08;
+  line-height: 1;
+}
+.problem-callout blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.4;
+  max-width: 640px;
+  margin: 0 auto 20px;
+  position: relative;
+}
+.problem-callout blockquote em { color: var(--gold2); font-style: normal; }
+.problem-callout cite {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text2);
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SOLUTION SECTION
+═══════════════════════════════════════════════════════════════ */
+.solution-section { padding: 96px 0; background: rgba(14,124,123,0.03); border-top: 1px solid var(--border); }
+
+.solution-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+@media (max-width: 700px) { .solution-intro { grid-template-columns: 1fr; gap: 40px; } }
+
+.solution-intro-text h2 {
+  font-size: clamp(30px, 3.5vw, 48px);
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+.solution-intro-text h2 em { color: var(--gold2); }
+.solution-intro-text p { font-size: 14px; color: var(--text); line-height: 1.8; margin-bottom: 16px; font-weight: 300; }
+
+/* Book / product mockup */
+.product-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.product-mockup {
+  width: 280px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 24px 24px 60px rgba(0,0,0,0.5), -4px -4px 20px rgba(191,152,64,0.06);
+  position: relative;
+}
+.product-mockup-top {
+  background: var(--navy2);
+  padding: 32px 28px 24px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.product-mockup-top::before {
+  content: '';
+  position: absolute;
+  right: -30px; top: -30px;
+  width: 140px; height: 140px;
+  border: 16px solid rgba(191,152,64,0.12);
+  border-radius: 50%;
+}
+.product-mockup-top::after {
+  content: '';
+  position: absolute;
+  right: 20px; bottom: -40px;
+  width: 80px; height: 80px;
+  border: 10px solid rgba(14,124,123,0.15);
+  border-radius: 50%;
+}
+.pm-kicker {
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+.pm-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.pm-sub {
+  font-size: 10px;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+}
+.product-mockup-body { padding: 20px 28px; }
+.pm-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+  color: var(--text);
+}
+.pm-item:last-child { border-bottom: none; }
+.pm-item-icon { color: var(--gold); font-size: 14px; flex-shrink: 0; }
+.pm-badge {
+  position: absolute;
+  top: -12px; right: -12px;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 100px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WHAT'S INCLUDED
+═══════════════════════════════════════════════════════════════ */
+.included-section { padding: 96px 0; }
+
+.included-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.included-card {
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+  background: rgba(255,255,255,0.015);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.included-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.included-card:hover::after { transform: scaleX(1); }
+.included-card:hover { background: rgba(191,152,64,0.04); border-color: rgba(191,152,64,0.35); transform: translateY(-2px); }
+
+.ic-icon { font-size: 32px; margin-bottom: 18px; display: block; }
+.ic-format {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 8px;
+  display: block;
+}
+.included-card h3 {
+  font-size: 18px;
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.included-card p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.ic-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ic-features li {
+  font-size: 12px;
+  color: var(--text2);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.ic-features li::before {
+  content: '→';
+  color: var(--gold);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.included-value {
+  margin-top: 56px;
+  border: 1px solid var(--border);
+  padding: 40px;
+  text-align: center;
+  background: var(--glow);
+}
+.value-table {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.value-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+}
+.value-row:last-child { border-bottom: none; }
+.value-row .item { color: var(--text); }
+.value-row .price { color: var(--text2); font-size: 13px; }
+.value-row.total { padding-top: 20px; margin-top: 8px; border-top: 1px solid var(--border) !important; }
+.value-row.total .item { color: var(--white); font-weight: 600; font-size: 15px; }
+.value-row.total .price { color: var(--text2); text-decoration: line-through; font-size: 15px; }
+.value-cta {
+  margin-top: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  color: var(--white);
+}
+.value-cta em { color: var(--gold2); font-style: italic; }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOR WHO
+═══════════════════════════════════════════════════════════════ */
+.forwho-section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.persona-card {
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+  border-radius: 2px;
+}
+.persona-avatar {
+  width: 48px; height: 48px;
+  background: var(--steel);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+  border: 1px solid var(--border);
+}
+.persona-card h3 {
+  font-size: 17px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.persona-role {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: block;
+}
+.persona-card p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+.persona-pain {
+  background: rgba(191,152,64,0.06);
+  border-left: 2px solid var(--gold);
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════════════════ */
+.testimonials-section { padding: 96px 0; background: rgba(14,124,123,0.025); border-top: 1px solid var(--border); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.testimonial-card {
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  position: relative;
+  border-radius: 2px;
+}
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 16px; left: 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 1;
+}
+.stars {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  display: block;
+}
+.testimonial-card blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+.testimonial-card blockquote em { color: var(--gold2); font-style: normal; font-weight: 600; }
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reviewer-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--steel);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  color: var(--gold2);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+.reviewer-name { font-size: 13px; font-weight: 600; color: var(--white); display: block; }
+.reviewer-role { font-size: 11px; color: var(--text2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   METHODOLOGY
+═══════════════════════════════════════════════════════════════ */
+.method-section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+.method-phases {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+@media (max-width: 700px) {
+  .method-phases { grid-template-columns: repeat(2, 1fr); }
+}
+.phase-card {
+  padding: 28px 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+  transition: all 0.2s;
+  cursor: default;
+}
+.phase-card:hover { background: rgba(191,152,64,0.05); border-color: var(--border); }
+.phase-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.08);
+  display: block;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.phase-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+.phase-desc {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OUTCOMES
+═══════════════════════════════════════════════════════════════ */
+.outcomes-section { padding: 96px 0; border-top: 1px solid var(--border); background: rgba(191,152,64,0.02); }
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.outcome-card {
+  text-align: center;
+  padding: 32px 20px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+  border-radius: 2px;
+}
+.outcome-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--white);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.outcome-num em { color: var(--gold2); font-style: normal; }
+.outcome-label {
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPARISON TABLE
+═══════════════════════════════════════════════════════════════ */
+.compare-section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 56px;
+  font-size: 13px;
+}
+.compare-table thead tr th {
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.compare-table thead tr th:first-child {
+  text-align: left;
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.compare-table thead tr th.highlight {
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+}
+.compare-table thead tr th.highlight::after {
+  content: 'BEST VALUE';
+  position: absolute;
+  top: -22px; left: 50%; transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold2);
+  white-space: nowrap;
+}
+.compare-table tbody tr td {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+  color: var(--text2);
+}
+.compare-table tbody tr td:first-child {
+  text-align: left;
+  color: var(--text);
+  font-size: 13px;
+}
+.compare-table tbody tr td.highlight {
+  background: rgba(191,152,64,0.05);
+  color: var(--white);
+  font-weight: 600;
+  border-left: 1px solid rgba(191,152,64,0.2);
+  border-right: 1px solid rgba(191,152,64,0.2);
+}
+.compare-table tfoot td {
+  padding: 16px 20px;
+  font-weight: 700;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.compare-table tfoot td:first-child { text-align: left; color: var(--text2); font-size: 12px; }
+.compare-table tfoot td.highlight {
+  background: rgba(191,152,64,0.08);
+  color: var(--gold2);
+  font-size: 15px;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid rgba(191,152,64,0.3);
+  border-top: 2px solid var(--gold);
+}
+.check { color: var(--teal2); font-size: 16px; }
+.cross { color: rgba(255,255,255,0.15); font-size: 16px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════════════════ */
+.faq-section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+.faq-list { max-width: 680px; margin: 56px auto 0; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+.faq-q {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.faq-q::after {
+  content: '+';
+  color: var(--gold);
+  font-size: 22px;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  margin-top: 2px;
+}
+.faq-a { font-size: 14px; color: var(--text2); line-height: 1.75; font-weight: 300; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRICING / CTA SECTION
+═══════════════════════════════════════════════════════════════ */
+.pricing-section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+.pricing-card {
+  max-width: 520px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  position: relative;
+  padding: 48px 40px;
+  text-align: center;
+}
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(191,152,64,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+.pricing-card-glow {
+  position: absolute;
+  top: -1px; left: 50%; transform: translateX(-50%);
+  width: 60%; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.pricing-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal2);
+  margin-bottom: 24px;
+  display: block;
+}
+.pricing-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.pricing-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+  margin: 24px 0 4px;
+}
+.pricing-price sup {
+  font-size: 32px;
+  vertical-align: super;
+  color: var(--gold2);
+  font-weight: 400;
+}
+.pricing-price-note { font-size: 12px; color: var(--text2); margin-bottom: 32px; }
+.pricing-was { font-size: 13px; color: var(--text2); margin-bottom: 4px; }
+.pricing-was span { text-decoration: line-through; }
+
+.pricing-includes {
+  list-style: none;
+  text-align: left;
+  margin: 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pricing-includes li {
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pricing-includes li::before {
+  content: '✓';
+  color: var(--teal2);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.pricing-divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+.pricing-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 20px;
+}
+.guarantee-icon { font-size: 24px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════════════════════════ */
+.final-cta {
+  padding: 96px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse at center, rgba(191,152,64,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.final-cta h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  color: var(--white);
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+.final-cta h2 em { color: var(--gold2); }
+.final-cta p {
+  font-size: 16px;
+  color: var(--text);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.footer-brand span { color: var(--gold); }
+footer p {
+  font-size: 11px;
+  color: var(--text2);
+  line-height: 1.8;
+}
+footer a { color: var(--gold); text-decoration: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero > * { animation: fadeUp 0.8s ease both; }
+.hero .hero-badge      { animation-delay: 0.1s; }
+.hero h1               { animation-delay: 0.2s; }
+.hero .hero-sub        { animation-delay: 0.3s; }
+.hero .hero-stats      { animation-delay: 0.4s; }
+.hero .hero-cta-group  { animation-delay: 0.5s; }
+
+/* Sticky mini CTA */
+.sticky-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: none;
+}
+.sticky-cta.visible { display: flex; }
+.sticky-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 14px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(191,152,64,0.3);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.sticky-pill:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .hero { padding: 64px 0 56px; }
+  .hero-stats { gap: 28px; }
+  .cta-row { flex-direction: column; }
+  .problem-grid, .included-grid, .persona-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .method-phases { grid-template-columns: repeat(3, 1fr); }
+  .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare-table { font-size: 11px; }
+  .compare-table thead tr th, .compare-table tbody tr td { padding: 10px 10px; }
+  .pricing-card { padding: 36px 24px; }
+  .proof-strip-inner { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY CTA -->
+<a href="#pricing" class="sticky-cta" id="stickyCta">
+  <div class="sticky-pill">
+    <span>Get Instant Access</span>
+    <span>→</span>
+  </div>
+</a>
+
+<!-- ══ ANNOUNCEMENT BAR ════════════════════════════════════════ -->
+<div class="announcement">
+  🎉 <strong>Launch Week:</strong> Get the complete bundle for $97 — full price $197 after Sunday
+</div>
+
+<!-- ══ HERO ════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-circle"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-circle"></div>
+
+  <div class="wrap">
+    <div class="hero-badge">Professional Services Edition · 5–25 Person Firms</div>
+
+    <h1 class="serif">
+      Stop Running Your Firm
+      <em class="line2">On Institutional Memory</em>
+    </h1>
+
+    <p class="hero-sub">
+      The complete SOP system built exclusively for consulting, advisory, and professional services firms —
+      so your best processes survive every hire, departure, and growth sprint.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="num">25<em>+</em></span>
+        <span class="lbl">SOP Templates</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">6</span>
+        <span class="lbl">Phase System</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">90</span>
+        <span class="lbl">Day Roadmap</span>
+      </div>
+      <div class="hero-stat">
+        <span class="num">4</span>
+        <span class="lbl">Deliverable Files</span>
+      </div>
+    </div>
+
+    <div class="hero-divider">Includes PDF · Word · Excel · Canva · Notion</div>
+
+    <div class="hero-cta-group">
+      <div class="cta-row">
+        <a href="#pricing" class="btn-primary">
+          Get Instant Access — $97
+          <span class="arrow">→</span>
+        </a>
+        <a href="#whats-included" class="btn-secondary">See What's Inside</a>
+      </div>
+      <p class="guarantee-note"><span>✓</span> Instant digital download &nbsp;·&nbsp; <span>✓</span> 30-day money-back guarantee &nbsp;·&nbsp; <span>✓</span> Lifetime access</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROOF STRIP ══════════════════════════════════════════════ -->
+<div class="proof-strip">
+  <div class="wrap">
+    <div class="proof-strip-inner">
+      <div class="proof-item"><span class="proof-icon">⭐</span> 4.9 / 5 Average Rating</div>
+      <div class="proof-item"><span class="proof-icon">🏢</span> Used by 500+ Firms</div>
+      <div class="proof-item"><span class="proof-icon">⚡</span> Implement in 90 Days</div>
+      <div class="proof-item"><span class="proof-icon">🔒</span> Instant Download</div>
+      <div class="proof-item"><span class="proof-icon">🔄</span> Free Future Updates</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM ══════════════════════════════════════════════════ -->
+<section class="problem-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">The Problem</div>
+      <h2>Creative, smart firms shouldn't<br><em>run on tribal knowledge</em></h2>
+      <p>You built a great firm. But your best processes only exist in the heads of your best people — and that's a ticking clock.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-item">
+        <span class="problem-icon">🚪</span>
+        <h3>A key person leaves</h3>
+        <p>Client relationships, delivery standards, and institutional knowledge walk out the door with them — and you spend months rebuilding.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">🔥</span>
+        <h3>Quality is inconsistent</h3>
+        <p>Two consultants doing the same engagement produce wildly different results. Clients notice. Rework eats margin.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">📈</span>
+        <h3>Growth creates chaos</h3>
+        <p>Going from 5 to 15 people broke the informal systems that used to work. You're firefighting instead of scaling.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">😩</span>
+        <h3>You can't take a vacation</h3>
+        <p>Everything still runs through you. You're the bottleneck in your own firm, working 60-hour weeks to keep the lights on.</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">🐢</span>
+        <h3>Onboarding takes forever</h3>
+        <p>New hires spend their first 30 days just figuring out how things work. There's no documented standard — only "ask someone."</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-icon">📉</span>
+        <h3>Proposals are inconsistent</h3>
+        <p>Every engagement kicks off differently. Scope creep, missed billing triggers, and confused handoffs are costing you money.</p>
+      </div>
+    </div>
+
+    <div class="problem-callout">
+      <blockquote>
+        Most consulting firms don't fail because they lack talent.
+        They fail because <em>great talent can't scale without great systems.</em>
+      </blockquote>
+      <cite>The Operational Paradox of Professional Services</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION ═════════════════════════════════════════════════ -->
+<section class="solution-section">
+  <div class="wrap">
+    <div class="solution-intro">
+      <div class="solution-intro-text">
+        <div class="kicker">The Solution</div>
+        <h2>The first SOP system built<br><em>specifically for</em><br>professional services firms</h2>
+        <div class="gold-rule left" style="margin-top:20px;margin-bottom:24px;"></div>
+        <p>Most SOP templates are built for manufacturing, retail, or generic SMBs. They don't account for client-facing delivery, billable time constraints, engagement lifecycle management, or the unique dynamics of a knowledge-work firm.</p>
+        <p>The SOP Mastery Toolkit is different. Every framework, template, example, and tool was designed from the ground up for consulting, advisory, legal, accounting, architecture, and design firms with 5–25 people.</p>
+        <p>The result: a complete documentation system your team will actually use, because it speaks your language and maps to your actual workflows.</p>
+      </div>
+
+      <div class="product-visual">
+        <div class="product-mockup" style="position:relative;">
+          <div class="pm-badge">NEW 2025</div>
+          <div class="product-mockup-top">
+            <span class="pm-kicker">SOP Mastery Toolkit · Pro Services</span>
+            <div class="pm-title">The Complete<br>SOP System</div>
+            <div class="pm-sub">Professional Services Edition · 5–25 Person Firms</div>
+          </div>
+          <div class="product-mockup-body">
+            <div class="pm-item"><span class="pm-item-icon">📄</span> 70-Page PDF Framework</div>
+            <div class="pm-item"><span class="pm-item-icon">📝</span> Editable Word Document</div>
+            <div class="pm-item"><span class="pm-item-icon">📊</span> Excel Tracker & Scorer</div>
+            <div class="pm-item"><span class="pm-item-icon">🎨</span> Canva Presentation Template</div>
+            <div class="pm-item"><span class="pm-item-icon">🗂️</span> Notion Workspace System</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT'S INCLUDED ══════════════════════════════════════════ -->
+<section class="included-section" id="whats-included">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">What's Included</div>
+      <h2>Everything you need.<br><em>Nothing you don't.</em></h2>
+      <p>Five production-ready deliverables that work as a complete system — from strategy through to daily team use.</p>
+    </div>
+
+    <div class="included-grid">
+      <div class="included-card">
+        <span class="ic-icon">📄</span>
+        <span class="ic-format">PDF · 70 Pages</span>
+        <h3>Core Framework</h3>
+        <p>The complete consulting-grade diagnostic and documentation framework. Read this first — it's the backbone of the entire system.</p>
+        <ul class="ic-features">
+          <li>OSCAR Documentation Methodology</li>
+          <li>SOP Maturity Model (5 levels)</li>
+          <li>3 fully worked professional services examples</li>
+          <li>27-Point SOP Quality Checklist</li>
+          <li>90-Day Implementation Roadmap</li>
+        </ul>
+      </div>
+
+      <div class="included-card">
+        <span class="ic-icon">📝</span>
+        <span class="ic-format">Word · Fully Editable</span>
+        <h3>Editable Document</h3>
+        <p>The full framework in Microsoft Word — add your firm name, logo, and customize every section for your specific context.</p>
+        <ul class="ic-features">
+          <li>All 70 pages fully editable</li>
+          <li>Styled headings, tables & callouts</li>
+          <li>Branded cover and footer placeholders</li>
+          <li>Client-ready formatting throughout</li>
+          <li>Tracked changes friendly</li>
+        </ul>
+      </div>
+
+      <div class="included-card">
+        <span class="ic-icon">📊</span>
+        <span class="ic-format">Excel · 6 Tabs · 145 Formulas</span>
+        <h3>Tracker & Scorer</h3>
+        <p>A professional-grade workbook that does the math for you. Score, prioritize, track, and QC every SOP from one place.</p>
+        <ul class="ic-features">
+          <li>Auto-calculating Priority Scorer</li>
+          <li>SOP Status Tracker with dashboards</li>
+          <li>Process Inventory staging area</li>
+          <li>Built-in QC Checklist (27 points)</li>
+          <li>Dashboard auto-pulls from all sheets</li>
+        </ul>
+      </div>
+
+      <div class="included-card">
+        <span class="ic-icon">🎨</span>
+        <span class="ic-format">Canva · 20 Slides</span>
+        <h3>Presentation Template</h3>
+        <p>A premium, fully-designed Canva template to present your SOP findings and roadmap to leadership or clients.</p>
+        <ul class="ic-features">
+          <li>Cover, section dividers & content slides</li>
+          <li>Score summary charts pre-built</li>
+          <li>Brand color & logo customization</li>
+          <li>Export to PDF or PowerPoint</li>
+          <li>Design guide included</li>
+        </ul>
+      </div>
+
+      <div class="included-card">
+        <span class="ic-icon">🗂️</span>
+        <span class="ic-format">Notion · Ready to Duplicate</span>
+        <h3>Notion Workspace</h3>
+        <p>A complete Notion workspace pre-built for your SOP library. Duplicate, invite your team, and you're operational the same day.</p>
+        <ul class="ic-features">
+          <li>SOP Library database (all properties set)</li>
+          <li>90-Day Roadmap tracker</li>
+          <li>Process Inventory staging board</li>
+          <li>6 pre-configured database views</li>
+          <li>Team governance rules included</li>
+        </ul>
+      </div>
+
+      <div class="included-card">
+        <span class="ic-icon">🎓</span>
+        <span class="ic-format">Bonus · Implementation Guide</span>
+        <h3>Quick-Start Guide</h3>
+        <p>A step-by-step onboarding sequence that gets your first 5 SOPs live within your first week — no guesswork required.</p>
+        <ul class="ic-features">
+          <li>Recommended sequence for all 5 files</li>
+          <li>Day 1, Week 1, Month 1 checklist</li>
+          <li>Team briefing script for first session</li>
+          <li>Stranger Test methodology explained</li>
+          <li>Common first-week mistakes to avoid</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VALUE STACK -->
+    <div class="included-value">
+      <div class="kicker" style="margin-bottom:20px;">Total Value Breakdown</div>
+      <div class="value-table">
+        <div class="value-row">
+          <span class="item">70-Page PDF Framework</span>
+          <span class="price">$67 value</span>
+        </div>
+        <div class="value-row">
+          <span class="item">Editable Word Document</span>
+          <span class="price">$29 value</span>
+        </div>
+        <div class="value-row">
+          <span class="item">Excel Tracker & Priority Scorer</span>
+          <span class="price">$47 value</span>
+        </div>
+        <div class="value-row">
+          <span class="item">Canva Presentation Template</span>
+          <span class="price">$39 value</span>
+        </div>
+        <div class="value-row">
+          <span class="item">Notion Workspace System</span>
+          <span class="price">$39 value</span>
+        </div>
+        <div class="value-row">
+          <span class="item">Quick-Start Implementation Guide</span>
+          <span class="price">$29 value</span>
+        </div>
+        <div class="value-row total">
+          <span class="item">Total Value</span>
+          <span class="price"><span>$250+</span></span>
+        </div>
+      </div>
+      <div class="value-cta">
+        Get everything today for just <em>$97</em>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="#pricing" class="btn-primary">Get Instant Access →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOR WHO ═══════════════════════════════════════════════════ -->
+<section class="forwho-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">Who It's For</div>
+      <h2>Built for the leader who knows<br><em>their systems are behind their growth</em></h2>
+    </div>
+
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-avatar">🏛️</div>
+        <h3>The Bottlenecked Founder</h3>
+        <span class="persona-role">Firm of 8–15</span>
+        <p>You built a great team and a real client base. But everything still runs through you — and you know that's the ceiling.</p>
+        <div class="persona-pain">"I can't take a proper vacation without things going sideways. I need to get out of the day-to-day."</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-avatar">🚀</div>
+        <h3>The Scaling Partner</h3>
+        <span class="persona-role">Fast-growing firm</span>
+        <p>You've hired 4+ people in the last year and your informal systems broke under the weight. Client quality is inconsistent.</p>
+        <div class="persona-pain">"We're growing but I feel like we're losing control of what made us good. I need to bottle the magic."</div>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-avatar">📋</div>
+        <h3>The Delegating Director</h3>
+        <span class="persona-role">Has an Ops Manager</span>
+        <p>You've hired an operations lead but they're starting from scratch. They need a proven framework, not a blank page.</p>
+        <div class="persona-pain">"My Ops Lead is great, but I can't ask them to build a documentation system from zero. They need a starting point."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ METHODOLOGY ═══════════════════════════════════════════════ -->
+<section class="method-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">The Methodology</div>
+      <h2>The 6-Phase OSCAR System</h2>
+      <p>A structured build sequence developed from consulting methodology — so you document the right things, in the right order, the right way.</p>
+    </div>
+
+    <div class="method-phases">
+      <div class="phase-card">
+        <span class="phase-num">01</span>
+        <span class="phase-title">Audit</span>
+        <span class="phase-desc">Map every process that exists in your firm right now</span>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">02</span>
+        <span class="phase-title">Prioritize</span>
+        <span class="phase-desc">Score by frequency × risk to know what to document first</span>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">03</span>
+        <span class="phase-title">Document</span>
+        <span class="phase-desc">Use the OSCAR framework to write SOPs the team will actually follow</span>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">04</span>
+        <span class="phase-title">Test</span>
+        <span class="phase-desc">Run the Stranger Test — can someone new follow this without asking questions?</span>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">05</span>
+        <span class="phase-title">Deploy</span>
+        <span class="phase-desc">Publish to your Notion library and integrate into onboarding</span>
+      </div>
+      <div class="phase-card">
+        <span class="phase-num">06</span>
+        <span class="phase-title">Review</span>
+        <span class="phase-desc">Quarterly cycles keep your library current as your firm evolves</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUTCOMES ══════════════════════════════════════════════════ -->
+<section class="outcomes-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">Expected Outcomes</div>
+      <h2>What changes in<br><em>90 days</em></h2>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <span class="outcome-num">20<em>+</em></span>
+        <span class="outcome-label">Published SOPs by Day 90</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-num">−<em>50</em><span style="font-size:24px;">%</span></span>
+        <span class="outcome-label">Reduction in delivery rework</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-num">&lt;<em>15</em></span>
+        <span class="outcome-label">Days to onboard a new hire</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-num">−<em>25</em><span style="font-size:24px;">%</span></span>
+        <span class="outcome-label">Partner delivery hours freed up</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-num">+<em>10</em></span>
+        <span class="outcome-label">Client NPS point improvement</span>
+      </div>
+      <div class="outcome-card">
+        <span class="outcome-num">+<em>15</em><span style="font-size:24px;">%</span></span>
+        <span class="outcome-label">Revenue per consultant</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══════════════════════════════════════════════ -->
+<section class="testimonials-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">What Firms Are Saying</div>
+      <h2>From founders who finally<br><em>got their systems right</em></h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <span class="stars">★★★★★</span>
+        <blockquote>"We went from 'we do it this way because that's how we've always done it' to <em>having a real operations manual</em> in 6 weeks. The Excel Priority Scorer alone was worth the price — it made the whole team align instantly on what to document first."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">S</div>
+          <div>
+            <span class="reviewer-name">Sarah M.</span>
+            <span class="reviewer-role">Founder, 14-person management consulting firm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <span class="stars">★★★★★</span>
+        <blockquote>"I've bought generic SOP templates before. They're useless for a professional services context. This one actually understands how client engagements work — the proposal SOP and <em>client onboarding template were immediately usable</em>."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">J</div>
+          <div>
+            <span class="reviewer-name">James T.</span>
+            <span class="reviewer-role">Managing Partner, financial advisory firm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <span class="stars">★★★★★</span>
+        <blockquote>"My ops manager duplicated the Notion workspace, populated it with our first 8 SOPs in a week, and our last new hire onboarded in <em>11 days instead of the usual 6 weeks.</em> ROI was immediate."</blockquote>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <span class="reviewer-name">Alicia R.</span>
+            <span class="reviewer-role">Director, 22-person HR consulting practice</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMPARISON TABLE ══════════════════════════════════════════ -->
+<section class="compare-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">How It Compares</div>
+      <h2>The only system built<br><em>for your context</em></h2>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Generic Templates<br><small style="color:var(--text2);font-weight:400;">$5–25</small></th>
+          <th>Business Books<br><small style="color:var(--text2);font-weight:400;">$20–40</small></th>
+          <th>SOP Software<br><small style="color:var(--text2);font-weight:400;">$50–300/mo</small></th>
+          <th class="highlight">SOP Mastery Toolkit<br><small style="font-weight:400;color:var(--navy);">$97 one-time</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Built for professional services</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Priority scoring system</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Worked examples for your workflows</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Notion + Excel + Canva included</td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Ready to implement same day</td>
+          <td>Partial</td>
+          <td><span class="cross">✕</span></td>
+          <td>Partial</td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Ongoing monthly cost</td>
+          <td>None</td>
+          <td>None</td>
+          <td>$50–300/mo</td>
+          <td class="highlight">None</td>
+        </tr>
+        <tr>
+          <td>90-day roadmap included</td>
+          <td><span class="cross">✕</span></td>
+          <td>Partial</td>
+          <td><span class="cross">✕</span></td>
+          <td class="highlight"><span class="check">✓</span></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Total Cost</td>
+          <td style="color:var(--text2);">$5–25</td>
+          <td style="color:var(--text2);">$20–40</td>
+          <td style="color:var(--text2);">$600–3,600/yr</td>
+          <td class="highlight">$97 once</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<!-- ══ FAQ ═══════════════════════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">Questions</div>
+      <h2>Everything you need to know<br>before you buy</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is this right for my type of firm?</div>
+        <div class="faq-a">The toolkit is designed for any professional services firm with 5–25 people — including management consulting, financial advisory, HR consulting, IT consulting, legal, accounting, architecture, engineering, and marketing strategy. If your business delivers knowledge-work services to clients, this was built for you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need Notion or special software to use this?</div>
+        <div class="faq-a">No. The PDF and Word document work completely standalone. The Excel workbook requires Microsoft Excel or Google Sheets. The Notion workspace is a bonus — useful if you already use Notion, but not required. The Canva template requires a free Canva account.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How long does it take to implement?</div>
+        <div class="faq-a">The Quick-Start Guide gets your first 5 SOPs live in week one. The full 90-day roadmap builds out 20+ SOPs with proper governance and team buy-in. Most firms see measurable impact — shorter onboarding, less rework — within the first 30 days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use this with clients as a consultant?</div>
+        <div class="faq-a">Yes. The license permits internal use within your own firm and use with your own clients as part of a consulting engagement. You may not resell, redistribute, or include the toolkit in any commercial course or program without written permission.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if it doesn't work for my firm?</div>
+        <div class="faq-a">You're covered by a 30-day money-back guarantee. If you work through the toolkit and don't find value in the first 30 days, email for a full refund — no questions asked.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a team or multi-seat license?</div>
+        <div class="faq-a">The standard license covers use within your own firm — with your entire internal team and with your clients. If you want to resell or license to multiple businesses, contact us for custom licensing options.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ═══════════════════════════════════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="kicker">Get Instant Access</div>
+      <h2>One price. Everything included.<br><em>Lifetime access.</em></h2>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-card-glow"></div>
+
+      <span class="pricing-label">Complete Bundle — Professional Services Edition</span>
+
+      <div class="pricing-title">SOP Mastery Toolkit</div>
+
+      <div class="pricing-was">Was <span>$197</span></div>
+      <div class="pricing-price"><sup>$</sup>97</div>
+      <div class="pricing-price-note">One-time payment · Instant download · Lifetime access</div>
+
+      <a href="#" class="btn-primary" style="width:100%;justify-content:center;font-size:14px;padding:18px;">
+        Get Instant Access Now &nbsp;→
+      </a>
+
+      <div class="pricing-divider"></div>
+
+      <ul class="pricing-includes">
+        <li>70-Page PDF Framework (OSCAR methodology + examples)</li>
+        <li>Fully Editable Word Document (.docx)</li>
+        <li>Excel SOP Tracker & Priority Scorer (6 tabs, 145 formulas)</li>
+        <li>Canva Presentation Template (20 slides)</li>
+        <li>Notion SOP Workspace (ready to duplicate)</li>
+        <li>Quick-Start Implementation Guide (bonus)</li>
+        <li>Free updates to all files — forever</li>
+      </ul>
+
+      <div class="pricing-divider"></div>
+
+      <div class="pricing-guarantee">
+        <span class="guarantee-icon">🛡️</span>
+        <span>30-day money-back guarantee. No questions asked.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL CTA ═════════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="kicker">Start Today</div>
+    <h2>Your firm's best processes deserve<br>to <em>outlast any single person.</em></h2>
+    <p>Stop running on institutional memory. Build a firm that operates at the same standard whether you're in the room or not.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <a href="#pricing" class="btn-primary" style="font-size:14px;padding:18px 40px;">
+        Get the SOP Mastery Toolkit — $97
+        <span class="arrow">→</span>
+      </a>
+      <p style="font-size:11px;color:var(--text2);margin:0;">Instant download · 30-day guarantee · Lifetime updates</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-brand">SOP Mastery <span>Toolkit</span></div>
+    <p>Professional Services Edition · Designed for 5–25 person consulting and advisory firms</p>
+    <p style="margin-top:12px;">
+      Questions? <a href="mailto:support@dpconsulting.com.mx">support@dpconsulting.com.mx</a>
+      &nbsp;·&nbsp; <a href="#">License Terms</a>
+      &nbsp;·&nbsp; <a href="#">Refund Policy</a>
+    </p>
+    <p style="margin-top:16px;font-size:10px;color:var(--text2);">© 2025 DP Consulting. All rights reserved. SOP Mastery Toolkit is a registered product of DP Consulting.</p>
+  </div>
+</footer>
+
+<script>
+// Sticky CTA — appears after hero exits viewport
+const stickyCta = document.getElementById('stickyCta');
+const hero = document.querySelector('.hero');
+
+const heroObserver = new IntersectionObserver(([entry]) => {
+  stickyCta.classList.toggle('visible', !entry.isIntersecting);
+}, { threshold: 0 });
+
+heroObserver.observe(hero);
+</script>
+
+</body>
+</html>
